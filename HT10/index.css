@@ -1,0 +1,80 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.case-to-dos{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    -webkit-box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 16px 1px rgba(0,0,0,0.75);
+    margin: 50px 0;
+    padding: 20px;
+}
+.case-to-dos>h2{
+    margin: 20px 0 10px 0;
+}
+
+.case-to-dos>button{
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background:#79f980fd
+}
+
+.case-to-dos>div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.case-to-dos>div>button{
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background:#79f980fd
+}
+
+
+ol{
+    padding-left: 20px;
+}
+
+li{
+    margin: 20px 0;
+}
+
+li>input{
+    width: 295px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    margin-right:25px;
+    outline: none;
+}
+
+li>button{
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background:#79f980fd;
+    margin-right: 20px;
+    padding: 5px 10px;
+}
+
+
+.input__act{
+    border-bottom: 1px solid #333;
+}
+
+textarea{
+    width: 80%;
+    resize: none;
+}
