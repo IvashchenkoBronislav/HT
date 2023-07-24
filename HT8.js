@@ -29,31 +29,31 @@
 // ============== 8.2 ================
 
 
-function trafficLights(red, yellow, green, all) {
-    console.log('Светофор включен')
-    let timeNow = 0
-    function colorOn(color, time) {
-            let idTime = setTimeout(() => {
-                console.log(color)
-                clearTimeout(idTime)
-            }, time * 1000)
-            return idTime
-        }
+// function trafficLights(red, yellow, green, all) {
+//     console.log('Светофор включен')
+//     let timeNow = 0
+//     function colorOn(color, time) {
+//             let idTime = setTimeout(() => {
+//                 console.log(color)
+//                 clearTimeout(idTime)
+//             }, time * 1000)
+//             return idTime
+//         }
         
-        timeNow += green
+//         timeNow += green
         
-        colorOn('зелёный', '')
+//         colorOn('зелёный', '')
     
-        colorOn('жёлтый', yellow)
+//         colorOn('жёлтый', yellow)
         
-        colorOn('красний', green + yellow)
+//         colorOn('красний', green + yellow)
 
-    setTimeout(() => {
-        console.log('Светофор выключен')
-    }, all * 1000)
-}
+//     setTimeout(() => {
+//         console.log('Светофор выключен')
+//     }, all * 1000)
+// }
 
-trafficLights(1, 1, 1, 6)
+// trafficLights(1, 1, 1, 6)
 
 
 // ============= 8.3 ============

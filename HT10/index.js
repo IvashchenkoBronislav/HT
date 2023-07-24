@@ -132,4 +132,19 @@ window.onload = () => {
 }
 
 
+// let cardArray = ['4567456745674567','4282428242824282','7224722472247224','8147814781478147']
 
+
+// function total(){
+//     let cash = prompt('Ваша ставка')
+    
+
+//     let rendomNum = Math.floor(Math.random() * 11) - 5;
+
+//     setTimeout(() => {
+//         if (rendomNum < 1) console.log(`Вы выиграли. Ваш выигрыш составляет ${cash * Math.floor(Math.random() * 11) - 5}`)
+//         if (rendomNum > 1) console.log(`Вы проиграли. Ваши деньги сгорели.`)
+//     }, 3 * 1000)
+// }
+
+// total()
