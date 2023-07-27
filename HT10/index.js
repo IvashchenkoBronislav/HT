@@ -2,7 +2,6 @@ function ToDosUser (userArray) {
     this.userID = userArray[0][0]
     this.todos = userArray[1]
 
-
     let caseToDos = document.createElement('div')
     caseToDos.classList.add('case-to-dos')
 
@@ -17,7 +16,7 @@ function ToDosUser (userArray) {
     let listToDos = document.createElement('ol')
     caseToDos.append(listToDos)
 
-    buttonAddToDos.addEventListener( 'click' , () => {
+    buttonAddToDos.addEventListener('click' , () => {
         if(!document.querySelector(`#newIDToDos${this.userID}`)){
             let newItemToDos = document.createElement('div')
             newItemToDos.id = `newIDToDos${this.userID}`
@@ -27,61 +26,72 @@ function ToDosUser (userArray) {
             let addButtonToDos = document.createElement('button')
             addButtonToDos.innerText = `ADD`
             addButtonToDos.addEventListener('click',()=>{
-                let itamToDos = document.createElement('li')
+                let newTask = {
+                    userId: this.userID,
+                    id: this.todos[this.todos.length-1].id +1 ,
+                    title: document.querySelector(`#textArea${this.userID}`).value,
+                    сompleted : false
+                }
 
-                let inputToDos = document.createElement('input')
-                inputToDos.value = document.querySelector(`#textArea${this.userID}`).value
-                inputToDos.disabled = true
+                this.todos.push(newTask)
 
-                let removeButtonToDos = document.createElement('button')
-                removeButtonToDos.innerText = 'Remove'
-                removeButtonToDos.addEventListener('click', (event) => {
-                    event.target.parentElement.remove()
+                fetch('https://jsonplaceholder.typicode.com/todos', {
+                    method: 'POST',
+                    body: JSON.stringify(newTask),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
                 })
+                .then(response => response.json())
+                .then((json) => {
+                    console.log(json)
+                    console.log(newTask)
 
-                let editButtonToDos = document.createElement('button')
-                editButtonToDos.innerText = 'Edit'
-                editButtonToDos.addEventListener('click', (event) => {
-                    event.target.parentNode.firstChild.disabled = !event.target.parentNode.firstChild.disabled
+                    let itamToDos = document.createElement('li')
+                    let inputToDos = document.createElement('input')
+                    inputToDos.id = this.todos[this.todos.length-1].id 
+                    inputToDos.value = document.querySelector(`#textArea${this.userID}`).value
+                    inputToDos.disabled = true
+    
+                    let removeButtonToDos = document.createElement('button')
+                    removeButtonToDos.innerText = 'Remove'
+                    removeButtonToDos.addEventListener('click', event => remEl(event))
+    
+                    let editButtonToDos = document.createElement('button')
+                    editButtonToDos.innerText = 'Edit'
+                    editButtonToDos.addEventListener('click', event => edditEl(event))
+    
+                    listToDos.append(itamToDos)
+                    itamToDos.append(inputToDos)
+                    itamToDos.append(removeButtonToDos)
+                    itamToDos.append(editButtonToDos)
                 })
-
-                listToDos.append(itamToDos)
-                itamToDos.append(inputToDos)
-                itamToDos.append(removeButtonToDos)
-                itamToDos.append(editButtonToDos)
-                console.log(document.querySelector(`#textArea${this.userID}`).value)
             })
 
             newItemToDos.append(inputToDos)
             newItemToDos.append(addButtonToDos)
             caseToDos.insertBefore(newItemToDos, listToDos)
-
         }else{
             document.querySelector(`#newIDToDos${this.userID}`).remove()
         }
-        
     })
 
-    this.todos.map( (el) => {
+    this.todos.map( (el,index) => {
+        // console.log(el)
         let itamToDos = document.createElement('li')
-
+        
         let inputToDos = document.createElement('input')
+        inputToDos.id = el.id
         inputToDos.value = el.title
         inputToDos.disabled = true
 
         let removeButtonToDos = document.createElement('button')
         removeButtonToDos.innerText = 'Remove'
-        removeButtonToDos.addEventListener('click', (event) => {
-            event.target.parentElement.remove()
-        })
+        removeButtonToDos.addEventListener('click',(event) => remEl(event))
 
         let editButtonToDos = document.createElement('button')
         editButtonToDos.innerText = 'Edit'
-        editButtonToDos.addEventListener('click', (event) => {
-            event.target.parentNode.firstChild.disabled = !event.target.parentNode.firstChild.disabled
-            event.target.parentNode.firstChild.classList.toggle("input__act")
-            console.log(event.target.parentNode.firstChild)
-        })
+        editButtonToDos.addEventListener('click', (event) => edditEl(event))
 
         listToDos.append(itamToDos)
         itamToDos.append(inputToDos)
@@ -118,33 +128,45 @@ function getInfo (id){
                 }
             })
             let toDosReander = new ToDosUser(userTodu)
-            
         }       
-    }
-
-    
+    }    
 }
 
 window.onload = () => {
     getInfo(2)
     getInfo(4)
     getInfo(6)
+    getInfo(10)
 }
 
+function remEl(event){
+    fetch(`https://jsonplaceholder.typicode.com/todos/${event.target.parentNode.firstChild.id}`,{
+        method:'DELETE'
+    })
+        .then((res) => res.json())
+        .then((json) => {
+            event.target.parentElement.remove()
+            console.log(json)
+        })
+}
 
-// let cardArray = ['4567456745674567','4282428242824282','7224722472247224','8147814781478147']
+function edditEl(event){
+    let input = event.target.parentNode.firstChild
 
-
-// function total(){
-//     let cash = prompt('Ваша ставка')
-    
-
-//     let rendomNum = Math.floor(Math.random() * 11) - 5;
-
-//     setTimeout(() => {
-//         if (rendomNum < 1) console.log(`Вы выиграли. Ваш выигрыш составляет ${cash * Math.floor(Math.random() * 11) - 5}`)
-//         if (rendomNum > 1) console.log(`Вы проиграли. Ваши деньги сгорели.`)
-//     }, 3 * 1000)
-// }
-
-// total()
+    if(input.disabled){
+        input.disabled = false
+        input.classList.toggle('input__act')
+        input.focus()
+    } else {
+        fetch(`https://jsonplaceholder.typicode.com/todos/${input.id}`,{
+            method:'PATCH',
+            body: JSON.stringify(input.value)
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                input.disabled = true
+                input.classList.toggle('input__act')
+                console.log(event.target.parentNode.firstChild.value)
+            })
+    }    
+}
