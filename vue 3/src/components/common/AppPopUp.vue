@@ -36,6 +36,13 @@
 </script>
 
 <style leng="scss">
+    .app-pop-up{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 500px;
+    }
+
     .header {
         display:flex;
         justify-content: flex-end;
@@ -71,5 +78,10 @@
         &:hover{
             transform: scale(1.5) rotate(360deg);
         }
+    }
+    .footer{
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
     }
 </style>

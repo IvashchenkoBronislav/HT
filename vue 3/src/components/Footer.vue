@@ -13,3 +13,10 @@
         })
     }
 </script>
+
+<style lang="scss">
+    .FooterApp{
+        display: flex;
+        justify-content: space-around;
+    }
+</style>

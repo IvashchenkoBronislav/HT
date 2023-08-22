@@ -51,11 +51,20 @@ export default{
 
 <style>
   #app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px; 
+
+    border:1px solid transparent;
+    border-radius: 20px;
+    background-color: #b3cce6;
+    margin: 60px auto; 
+    padding: 20px 40px;
   }
 </style>
