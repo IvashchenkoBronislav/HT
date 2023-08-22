@@ -8,10 +8,11 @@
         </div>
         <div class="comments">
             <div
-                v-for="(item) in commentsList"
+                v-for="item in commentsList"
                 :key = "item.id"
-                :id="`'comment-'${item.id}`"
-                class="comments__item"   >
+                :id="`comment-${item.id}`"
+                class="comments__item"   
+            >
 
                 <h3>{{ item.name }}</h3>
                 <span>{{ item.email }}</span>
