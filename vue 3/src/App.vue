@@ -8,10 +8,12 @@
     <AppPopUp 
       @closePopUpEvent="castomConsole('closePopUpEvent')"
       @backPopUpEvent="castomConsole('Back')"
-      @continuePopUpEvent="castomConsole('Continue')"  
+      @continuePopUpEvent="castomConsole('Continue')"
+      
     />
     <AppButton
       @appButtonClick="castomConsole('appButtonClick')"
+      appButtonText="App Button"  
     />
     <FooterApp/>
 
